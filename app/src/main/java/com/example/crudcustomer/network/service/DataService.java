@@ -19,10 +19,9 @@ public interface DataService {
     @FormUrlEncoded
     @POST(EndPoint.API_CREATE)
     Call<BaseResponse> apiCreate(
-            @Field("full_name") String full_name,
-            @Field("username") String username,
+            @Field("name") String name,
             @Field("email") String email,
-            @Field("phone_number") String phone_number);
+            @Field("password") String password);
 
     @GET(EndPoint.API_READ)
     Call<BaseResponse<List<Data>>> apiRead();
@@ -31,10 +30,9 @@ public interface DataService {
     @PUT(EndPoint.API_UPDATE+"{id}")
     Call<BaseResponse> apiUpdate(
             @Path("id") String id,
-            @Field("full_name") String full_name,
-            @Field("username") String username,
+            @Field("name") String name,
             @Field("email") String email,
-            @Field("phone_number") String phone_number
+            @Field("password") String password
     );
 
     @DELETE(EndPoint.API_DELETE+"{id}")

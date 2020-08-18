@@ -77,7 +77,7 @@ public class DataActivity extends AppCompatActivity implements OnDeleteClickList
     }
 
     private void initViews() {
-        rvData = (RecyclerView) findViewById(R.id.rv_data);
+        rvData = (RecyclerView) findViewById(R.id.rvData);
     }
 
     private void doDelete(final int position, String id) {

@@ -7,13 +7,13 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.crudcustomer.network.ServiceGenerator;
 import com.example.crudcustomer.network.response.BaseResponse;
 import com.example.crudcustomer.network.service.DataService;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,12 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private DataService service;
 
-    private EditText etFullName;
-    private EditText etUsername;
-    private EditText etEmail;
-    private EditText etPhoneNumber;
-    private Button btnSubmit;
-    private Button btnShow;
+    private TextInputEditText etName;
+    private TextInputEditText etEmail;
+    private TextInputEditText etPassword;
+    private MaterialButton btnSubmit;
+    private MaterialButton btnViewData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,49 +45,58 @@ public class MainActivity extends AppCompatActivity {
         service = ServiceGenerator.createBaseService(this, DataService.class);
     }
 
-    boolean isEmail(EditText text) {
+    boolean isEmail(TextInputEditText text) {
         CharSequence email = text.getText().toString();
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+
+    public static boolean isValidPassword(final String password) {
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{4,}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+
     }
 
     private void initListener() {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String full_name = etFullName.getText().toString();
-                String username = etUsername.getText().toString();
+                String name = etName.getText().toString();
                 String email = etEmail.getText().toString();
-                String phone_number = etPhoneNumber.getText().toString();
-                Log.e("full_name", full_name);
-                Log.e("username", username);
+                String password = etPassword.getText().toString();
+                Log.e("name", name);
                 Log.e("email", email);
-                Log.e("phone_number", phone_number);
+                Log.e("password", password);
 
-                if(isEmpty(full_name)){
-                    etFullName.setError("Full Name must not be empty");
-                    etFullName.requestFocus();
-                }else if(isEmpty(username)){
-                    etUsername.setError("Username must not be empty");
-                    etUsername.requestFocus();
+                if(isEmpty(name)){
+                    etName.setError("Name must not be empty");
+                    etName.requestFocus();
                 }else if(isEmpty(email)){
                     etEmail.setError("Email must not be empty");
                     etEmail.requestFocus();
                 }else if (!isEmail(etEmail)) {
                     etEmail.setError("Enter valid email");
                     etEmail.requestFocus();
-                }else if(isEmpty(phone_number)){
-                    etPhoneNumber.setError("Phone Number must not be empty");
-                    etPhoneNumber.requestFocus();
-                }else if (phone_number.trim().length()<11 && phone_number.trim().length()>13){
-                    etPhoneNumber.setError("Phone Number must be more than 11 and less than 13");
-                    etPhoneNumber.requestFocus();
+                }else if(isEmpty(password)){
+                    etPassword.setError("Password must not be empty");
+                    etPassword.requestFocus();
+                }else if (password.trim().length()<8){
+                    etPassword.setError("Password must be more than 8 Character");
+                    etPassword.requestFocus();
+                }else if (!isValidPassword(password)) {
+                    etPassword.setError("Password must be alphanumeric");
+                    etPassword.requestFocus();
                 }else{
-                    addData(full_name, username, email, phone_number);
+                    addData(name, email, password);
                 }
             }
         });
 
-        btnShow.setOnClickListener(new View.OnClickListener() {
+        btnViewData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DataActivity.newInstance(MainActivity.this);
@@ -96,18 +104,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void addData(String full_name, String username, String email, String phone_number) {
-        Call<BaseResponse> call = service.apiCreate(full_name, username, email, phone_number);
+    private void addData(String name, String email, String password) {
+        Call<BaseResponse> call = service.apiCreate(name, email, password);
 
         call.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if(response.code() == 200) {
                     Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                    etFullName.setText("");
-                    etUsername.setText("");
+                    etName.setText("");
                     etEmail.setText("");
-                    etPhoneNumber.setText("");
+                    etPassword.setText("");
                 }
             }
 
@@ -119,11 +126,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        etFullName = (EditText) findViewById(R.id.et_full_name);
-        etUsername = (EditText) findViewById(R.id.et_username);
-        etEmail = (EditText) findViewById(R.id.et_email);
-        etPhoneNumber = (EditText) findViewById(R.id.et_phone_number);
-        btnShow = (Button) findViewById(R.id.btn_show);
-        btnSubmit = (Button) findViewById(R.id.btn_submit);
+        etName = (TextInputEditText) findViewById(R.id.etName);
+        etEmail = (TextInputEditText) findViewById(R.id.etEmail);
+        etPassword = (TextInputEditText) findViewById(R.id.etPassword);
+        btnViewData = (MaterialButton) findViewById(R.id.btnViewData);
+        btnSubmit = (MaterialButton) findViewById(R.id.btnSubmit);
     }
 }

@@ -3,20 +3,12 @@ package com.example.crudcustomer.network.response;
 import com.google.gson.annotations.SerializedName;
 
 public class BaseResponse<T> {
-    @SerializedName("status")
-    private boolean status;
     @SerializedName("message")
     private String message;
+    @SerializedName("status")
+    private boolean status;
     @SerializedName("data")
     private T data;
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
 
     public String getMessage() {
         return message;
@@ -24,6 +16,14 @@ public class BaseResponse<T> {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public T getData() {

@@ -1,90 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/tv_number"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="15sp"
-        android:text="1"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_full_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_number"
-        android:textSize="15sp"
-        android:gravity="center"
-        android:text="Trio Saputra"/>
-
-    <TextView
-        android:id="@+id/tv_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_full_name"
-        android:textSize="15sp"
-        android:gravity="center"
-        android:text="Trio"/>
-
-    <TextView
-        android:id="@+id/tv_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_username"
-        android:textSize="15sp"
-        android:gravity="center"
-        android:text="trio@gmail.com"/>
-
-    <TextView
-        android:id="@+id/tv_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_email"
-        android:textSize="15sp"
-        android:gravity="center"
-        android:text="0821412414"/>
-
-    <TextView
-        android:id="@+id/tv_created_at"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_phone_number"
-        android:textSize="15sp"
-        android:gravity="center"
-        android:text="2020-08-28"/>
-
-    <TextView
-        android:id="@+id/tv_updated_at"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_created_at"
-        android:textSize="15sp"
-        android:gravity="center"
-        android:text="2020-08-29"/>
-
-    <LinearLayout
-        android:id="@+id/ll_action"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_updated_at"
-        android:gravity="center_horizontal">
-        <Button
-            android:id="@+id/btn_edit"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNumber"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="edit" />
+            android:layout_margin="10dp"
+            android:text="@string/_1"
+            android:textAlignment="center"
+            tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/btn_delete"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="hapus" />
-    </LinearLayout>
-</RelativeLayout>
+            android:layout_margin="10dp"
+            android:text="@string/trio_saputra"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/tvNumber"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/trio_gmail_com"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCreatedAt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/_2020_08_18t02_59_48_000000z"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/tvEmail"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvUpdatedAt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/_2020_08_18t02_59_48_000000z"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/tvCreatedAt"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvUpdatedAt"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/update"
+                android:layout_margin="10dp"
+                app:backgroundTint="@android:color/holo_blue_light"
+                tools:ignore="MissingConstraints"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnDelete"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                android:layout_margin="10dp"
+                app:backgroundTint="@android:color/holo_red_dark"
+                app:layout_constraintStart_toEndOf="@id/btnUpdate"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

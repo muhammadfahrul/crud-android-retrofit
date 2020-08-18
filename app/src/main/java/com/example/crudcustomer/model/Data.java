@@ -8,14 +8,14 @@ import com.google.gson.annotations.SerializedName;
 public class Data implements Parcelable {
     @SerializedName("id")
     String id;
-    @SerializedName("full_name")
-    String full_name;
-    @SerializedName("username")
-    String username;
+    @SerializedName("name")
+    String name;
     @SerializedName("email")
     String email;
-    @SerializedName("phone_number")
-    String phone_number;
+    @SerializedName("password")
+    String password;
+    @SerializedName("api_token")
+    String api_token;
     @SerializedName("created_at")
     String created_at;
     @SerializedName("updated_at")
@@ -23,10 +23,10 @@ public class Data implements Parcelable {
 
     protected Data(Parcel in) {
         id = in.readString();
-        full_name = in.readString();
-        username = in.readString();
+        name = in.readString();
         email = in.readString();
-        phone_number = in.readString();
+        password = in.readString();
+        api_token = in.readString();
         created_at = in.readString();
         updated_at = in.readString();
     }
@@ -34,10 +34,10 @@ public class Data implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
-        dest.writeString(full_name);
-        dest.writeString(username);
+        dest.writeString(name);
         dest.writeString(email);
-        dest.writeString(phone_number);
+        dest.writeString(password);
+        dest.writeString(api_token);
         dest.writeString(created_at);
         dest.writeString(updated_at);
     }
@@ -67,20 +67,12 @@ public class Data implements Parcelable {
         this.id = id;
     }
 
-    public String getFullName() {
-        return full_name;
+    public String getName() {
+        return name;
     }
 
-    public void setFullName(String full_name) {
-        this.full_name = full_name;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -91,12 +83,20 @@ public class Data implements Parcelable {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phone_number;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPhoneNumber(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getApiToken() {
+        return api_token;
+    }
+
+    public void setApiToken(String api_token) {
+        this.api_token = api_token;
     }
 
     public String getCreatedAt() {

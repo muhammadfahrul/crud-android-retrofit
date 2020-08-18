@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">CRUD Customer</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="created_at">Created At</string>
+    <string name="updated_at">Updated At</string>
+    <string name="submit">SUBMIT</string>
+    <string name="view_data">VIEW DATA</string>
+    <string name="password">Password</string>
+    <string name="_1">1</string>
+    <string name="trio_saputra">Trio Saputra</string>
+    <string name="trio_gmail_com">trio@gmail.com</string>
+    <string name="_2020_08_18t02_59_48_000000z">2020-08-18T02:59:48.000000Z</string>
+    <string name="update">UPDATE</string>
+    <string name="delete">DELETE</string>
+    <string name="new_password">New Password</string>
 </resources>
